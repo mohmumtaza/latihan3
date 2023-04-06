@@ -1,0 +1,64 @@
+public class ExampleStack {
+    private Object[] elements;
+    private int top;
+    private int size;
+
+    public ExampleStack(int size) {
+        this.size = size;
+        elements = new Object[size];
+        top = -1;
+    }
+
+    public void push(Object element) {
+        top++;
+        elements[top] = element;
+    }
+
+    public Object pop() {
+        Object element = elements[top];
+        top--;
+        return element;
+    }
+
+    public Object peek() {
+        return elements[top];
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == size - 1;
+    }
+
+    public int search(Object element) {
+        for (int i = top; i >= 0; i--) {
+            if (elements[i].equals(element)) {
+                return top - i + 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        ExampleStack st = new ExampleStack(5);
+
+        st.push("Aku");
+        st.push("Anak");
+        st.push("Indonesia");
+
+        System.out.println("Next : " +st.peek());
+        st.push("Raya");
+        System.out.println(st.pop());
+        st.push("!");
+
+        int count = st.search("Aku");
+        while (count != -1 && count > 1){
+            st.pop();
+            count--;
+        }
+        System.out.println(st.pop());
+        System.out.println(st.isEmpty());
+    }
+}
