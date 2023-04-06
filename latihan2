@@ -1,0 +1,49 @@
+public class MainQueue {
+    private Object[] elements;
+    private int size;
+    private int head;
+    private int tail;
+
+    public MainQueue(int size) {
+        this.size = size;
+        elements = new Object[size];
+        head = 0;
+        tail = -1;
+    }
+
+    public void add(Object element) {
+        tail++;
+        elements[tail] = element;
+    }
+
+    public Object remove() {
+        Object element = elements[head];
+        head++;
+        return element;
+    }
+
+    public Object peek() {
+        return elements[head];
+    }
+
+    public boolean isEmpty() {
+        return head > tail;
+    }
+
+    public boolean isFull() {
+        return tail == size - 1;
+    }
+
+    public static void main(String[] args) {
+        MainQueue queue = new MainQueue(4);
+        queue.add("Java");
+        queue.add("DotNet");
+        queue.add("PHP");
+        queue.add("HTML");
+
+        System.out.println("remove: " + queue.remove());
+        System.out.println("element: " + queue.peek());
+        System.out.println("poll: " + queue.remove());
+        System.out.println("peek: " + queue.peek());
+    }
+}
